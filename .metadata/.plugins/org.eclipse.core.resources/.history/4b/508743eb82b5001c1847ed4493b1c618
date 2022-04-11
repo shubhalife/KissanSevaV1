@@ -1,0 +1,8 @@
+package com.farmsystem.backend.entity;
+
+public class Snippet {
+	<li>
+	                                                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><button type="button" className="btn btn-primary" onClick={handleProduct}>View Products</button></span> </a>
+	                                              </li>
+}
+

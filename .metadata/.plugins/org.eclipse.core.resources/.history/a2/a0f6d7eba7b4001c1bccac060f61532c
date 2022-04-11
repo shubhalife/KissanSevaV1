@@ -1,0 +1,89 @@
+package com.farmsystem.backend.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="products")
+public class Product 
+{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="pid")
+	private int pid;
+	
+	@ManyToOne
+	@JoinColumn(name="fid")
+	private Farmer farmer;
+	
+	@Column(name= "cropcategory")
+	private String cropCategory;
+	
+	@Column(name= "Quantity")
+	private double Quantity;
+	
+	@Column(name= "Expected_Price")
+	private double Expected_Price;
+
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
+	public Farmer getFarmer() {
+		return farmer;
+	}
+
+	public void setFarmer(Farmer farmer) {
+		this.farmer = farmer;
+	}
+
+	public String getCropCategory() {
+		return cropCategory;
+	}
+
+	public void setCropCategory(String cropCategory) {
+		this.cropCategory = cropCategory;
+	}
+
+	public double getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		Quantity = quantity;
+	}
+
+	public double getExpected_Price() {
+		return Expected_Price;
+	}
+
+	public void setExpected_Price(double expected_Price) {
+		Expected_Price = expected_Price;
+	}
+
+	public Product(int pid, Farmer farmer, String cropCategory, double quantity, double expected_Price) {
+		super();
+		this.pid = pid;
+		this.farmer = farmer;
+		this.cropCategory = cropCategory;
+		Quantity = quantity;
+		Expected_Price = expected_Price;
+	}
+
+	public Product() {
+		
+	}
+
+	
+	
+}

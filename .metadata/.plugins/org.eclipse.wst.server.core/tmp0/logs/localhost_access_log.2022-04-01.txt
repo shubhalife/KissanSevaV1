@@ -1,0 +1,6 @@
+127.0.0.1 - - [01/Apr/2022:13:24:21 +0530] "GET / HTTP/1.1" 404 751
+127.0.0.1 - - [01/Apr/2022:13:24:22 +0530] "GET /backend/WEB-INF/classes/com/farmsystem/backend/controller/HomeController.java HTTP/1.1" 404 682
+127.0.0.1 - - [01/Apr/2022:13:24:22 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+127.0.0.1 - - [01/Apr/2022:14:12:28 +0530] "GET / HTTP/1.1" 404 751
+127.0.0.1 - - [01/Apr/2022:14:12:29 +0530] "GET /backend/WEB-INF/classes/com/farmsystem/backend/controller/HomeController.java HTTP/1.1" 404 682
+127.0.0.1 - - [01/Apr/2022:14:12:29 +0530] "GET /favicon.ico HTTP/1.1" 404 762
