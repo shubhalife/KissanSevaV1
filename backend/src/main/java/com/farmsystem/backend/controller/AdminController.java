@@ -18,6 +18,7 @@ import com.farmsystem.backend.repository.BuyerRepo;
 import com.farmsystem.backend.repository.FarmerRepo;
 import com.farmsystem.backend.repository.OrderRepo;
 import com.farmsystem.backend.repository.ProductRepo;
+import com.farmsystem.backend.service.AdminService;
 
 
 
@@ -26,50 +27,24 @@ import com.farmsystem.backend.repository.ProductRepo;
 @RequestMapping("/admin")
 public class AdminController 
 {
-	
 	@Autowired
-	AdminRepo adminRepo;
+	AdminService adminservice;
 	
-	@Autowired
-	BuyerRepo buyerRepo;
-	
-	@Autowired
-	OrderRepo orderRepo;
-	
-	@Autowired
-	ProductRepo productRepo;
-	
-	@Autowired
-	FarmerRepo farmerRepo;
 	
 	@PostMapping("/login")
 	public String loginUser(@RequestBody Admin admin) {
-	        
-			System.out.println(admin.getPassword());
-			System.out.println(admin.getUser_name());
-			List<Admin> adminList = adminRepo.findAll();              
-			
-			String passMsg = "pass" ;
-			String failMsg = "fail" ;
-			
-			for(Admin adminobj : adminList )
-			{
-			if(adminobj.getUser_name().equals(admin.getUser_name()) && adminobj.getPassword().equals(admin.getPassword()))
-				{
-					
-					return passMsg ;
-				}
-			}
 		
-		return failMsg;
+	  String message = this.adminservice.adminLogin(admin);
+	  
+	  return message;
 	}
+	
 	
 	@PostMapping("/buyer-list")
 	public List<Buyer> getBuyers() {
 	        
-		
-			List<Buyer> buyerList = buyerRepo.findAll();              
-			
+		List<Buyer> buyerList = this.adminservice.getAllBuyers();
+
 		return buyerList;
 	}
 	
@@ -77,7 +52,7 @@ public class AdminController
 	public List<Farmer> getFarmers() {
 	        
 		
-			List<Farmer> farmerList = farmerRepo.findAll();              
+		List<Farmer> farmerList = this.adminservice.getAllFarmers();              
 			
 		return farmerList;
 	}
@@ -86,7 +61,7 @@ public class AdminController
 	public List<Farmer> getOrders() {
 	        
 		
-			List<Farmer> farmerList = farmerRepo.findAll();              
+		List<Farmer> farmerList = this.adminservice.getAllOrders();              
 			
 		return farmerList;
 	}
@@ -94,7 +69,7 @@ public class AdminController
 	@PostMapping("/Product")
 	public List<Farmer> getProduct() {
 	        
-			List<Farmer> farmerList = farmerRepo.findAll();              
+		List<Farmer> farmerList = this.adminservice.getAllProducts();              
 			
 		return farmerList;
 	}

@@ -21,7 +21,6 @@
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
     <fullyQualifiedTypeName name="com.farmsystem.backend.repository.ProductRepo"/>
     <fullyQualifiedTypeName name="com.farmsystem.backend.repository.BuyerRepo"/>
-    <fullyQualifiedTypeName name="com.farmsystem.backend.entity.Buyer"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javax.persistence.Column"/>
     <fullyQualifiedTypeName name="com.farmsystem.backend.entity.Product"/>
@@ -37,4 +36,12 @@
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.entity.Admin"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.service.AdminService"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.service.ProfileService"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.entity.Buyer"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.service.BuyerCartService"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.service.BuyerService"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.farmsystem.backend.service.FarmerService"/>
 </qualifiedTypeNameHistroy>

@@ -18,6 +18,7 @@ import com.farmsystem.backend.entity.Product;
 import com.farmsystem.backend.repository.FarmerRepo;
 import com.farmsystem.backend.repository.OrderRepo;
 import com.farmsystem.backend.repository.ProductRepo;
+import com.farmsystem.backend.service.FarmerService;
 
 @CrossOrigin
 @RestController
@@ -25,131 +26,71 @@ import com.farmsystem.backend.repository.ProductRepo;
 public class FarmerController 
 {
 	@Autowired
-	FarmerRepo farmerRepo;
-	
-	@Autowired
-	OrderRepo orderRepo;
-	
-	@Autowired
-	ProductRepo productRepo;
+	FarmerService farmerService;
 	
 	@GetMapping("/profile/{username}")
 	public Optional<Farmer> getFarmer(@PathVariable String username) {
-
 		
-		int fid = farmerRepo.findByName(username);
-			          
-		return farmerRepo.findById(fid);
-		    
+		Optional<Farmer> farmer = this.farmerService.getFarmer(username);
+		
+		return farmer;    
 	}
+	
 	
 	@PostMapping("/forgot-password")
 	public String forgotPassword(@RequestBody Farmer farmer)
 	{
-		String username = farmer.getUser_name();
-		String newpassword = farmer.getPassword();
+		String message = this.farmerService.forgotPassword(farmer);
 		
-		farmerRepo.updatePassword(newpassword,username);
-		
-		return "updated";
+		return message;
 	}
+	
+	
 	
 	@PostMapping("/Registration")
 	public String regFarmer(@RequestBody Farmer farmer) {
 
-		System.out.println(farmer.toString());
-//		    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();	
-//		    String encodedPassword = passwordEncoder.encode(user.getPassword());
-//		    user.setPassword(encodedPassword);
-		     
-		    farmerRepo.save(farmer);
-		     
-		    return "register_success";
-		    
+		String message = this.farmerService.regFarmer(farmer);
+		  
+		return message;
 	}
 	
 	
 	@PostMapping("/login")
 	public String loginUser(@RequestBody Farmer farmer) {
-	        
-			System.out.println(farmer.getUser_name());
-		
-			List<Farmer> farmerList = farmerRepo.findAll();              
+	     
+		String message = this.farmerService.loginUser(farmer);
 			
-			String passMsg = "pass" ;
-			String failMsg = "fail" ;
-			
-			for(Farmer farmerobj : farmerList )
-			{
-			if(farmerobj.getUser_name().equals(farmer.getUser_name()) && farmerobj.getPassword().equals(farmer.getPassword()))
-				{
-					
-					return passMsg ;
-				}
-			}
-		
-		return failMsg;
+		return message;
 	}
 	
 	
 	@PostMapping("/orders")
 	public List<Order> getDetails(@RequestBody Farmer farmer)
 	{
-		String uname = farmer.getUser_name();
-		
-		int fid = farmerRepo.findByName(uname);
-		
-		List<Order> orderList = orderRepo.findById(fid);  
+		List<Order> orderList =this.farmerService.getDetailsByFarmer(farmer);
 		
 		return orderList;
 		
 	}
 	
+	
+	
 	@PostMapping("/add-product")
-	public String getDetails(@RequestBody Product product)
+	public String addProducts(@RequestBody Product product)
 	{
-		System.out.println(product.getCrop());
-		String uname = product.getFarmer().getUser_name();
+		String message = this.farmerService.addProduct(product);
 		
-		int fid = farmerRepo.findByName(uname);
-		
-		product.getFarmer().setFid(fid);
-		
-		productRepo.save(product);
-	     
-	    return "register_success";
+		return message;
 		
 	}
 	
 	@PostMapping("/orders/change-status")
-	public String getDetails(@RequestBody Order order)
+	public String getOrder(@RequestBody Order order)
 	{
-		System.out.println(order.getOid());
+		String message = this.farmerService.getOrder(order);
 		
-		int oid = order.getOid();
-		
-		int fid = order.getFarmer().getFid();
-		
-		String crop = order.getCrop_category();
-		
-		double quantityAvailable = productRepo.getQuantity(fid,crop);
-		
-		double quatitytOrdered = order.getQuantity();
-		
-		double quantityRemains = (quantityAvailable)-(quatitytOrdered);
-		
-		if(quantityRemains == 0)
-		{
-			productRepo.deleteQuantityCompletly(fid,crop);
-		}
-		else
-		{
-			productRepo.deductQuantity(fid,quantityRemains,crop);
-		}
-				
-		orderRepo.changeStatus(oid);
-	     
-	    return "approved successfully";
+		return message;
 		
 	}
 	

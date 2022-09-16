@@ -22,6 +22,7 @@ import com.farmsystem.backend.repository.BuyerRepo;
 import com.farmsystem.backend.repository.FarmerRepo;
 import com.farmsystem.backend.repository.OrderRepo;
 import com.farmsystem.backend.repository.ProductRepo;
+import com.farmsystem.backend.service.BuyerService;
 
 @CrossOrigin
 @RestController
@@ -29,68 +30,42 @@ import com.farmsystem.backend.repository.ProductRepo;
 public class BuyerController {
 
 	@Autowired
-	BuyerRepo buyerRepo;
-	
-	@Autowired
-	OrderRepo orderRepo;
-	
-	@Autowired
-	ProductRepo productRepo;
-	
-	@Autowired
-	BuyerCartRepo buyercartRepo;
-	
-	@Autowired
-	FarmerRepo farmerRepo;
-	
+	BuyerService buyerService;
 	
 	
 	@PostMapping("/login")
 	public String loginUser(@RequestBody Buyer buyer) {
 	        
-			System.out.println(buyer.getPassword());
-			System.out.println(buyer.getUser_name());
-			List<Buyer> buyerList = buyerRepo.findAll();              
+		String message = this.buyerService.buyerLogin(buyer);
 			
-			String passMsg = "pass" ;
-			String failMsg = "fail" ;
-			
-			for(Buyer buyerobj : buyerList )
-			{
-			if(buyerobj.getUser_name().equals(buyer.getUser_name()) && buyerobj.getPassword().equals(buyer.getPassword()))
-				{
-					
-					return passMsg ;
-				}
-			}
-		
-		return failMsg;
+		return message;
 	}
 	
+	
+	
 	@PostMapping("/Registration")
-	public String regFarmer(@RequestBody Buyer buyer) {
-
+	public String regBuyer(@RequestBody Buyer buyer) {
+		
+		String message = this.buyerService.registerBuyer(buyer);
 		     
-		    buyerRepo.save(buyer);
-		     
-		    return "register_success";
+		return message;  
 		    
 	}
 	
 	@PostMapping("/search")
 	public List<Product> searchProduct(@RequestBody Product prod) {
 	        
-			String item = prod.getCrop();
-			List<Product> productList = productRepo.findProduct(item);              
+		List<Product> productList = this.buyerService.getProductByCrop(prod);              
 		
 		return productList;
 	}
 	
+	
+	
 	@PostMapping("/allsearch")
 	public List<Product> searchProduct() {
-	        
-			
-			List<Product> productList = productRepo.findAll();              
+	        	
+		List<Product> productList = this.buyerService.getAllProducts();              
 		
 		return productList;
 	}
@@ -99,55 +74,40 @@ public class BuyerController {
 	@PostMapping("/myCart")
 	public List<BuyerCart> buyerCart() {
 	        
-			
-		List<BuyerCart> cartlist = buyercartRepo.findAll();              
+		List<BuyerCart> cartlist = this.buyerService.getBuyerCart();              
 		
 		return cartlist;
 	}
 	
+	
+	
 	//http://localhost:9099/buyer/confirmed-orders
 		
-		@PostMapping("/confirmed-orders")
+	@PostMapping("/confirmed-orders")
 	public List<Order> buyerCart(@RequestBody Buyer buyer) {
 	        
-			System.out.println(buyer.getUser_name());
-			String uname = buyer.getUser_name();
+		List<Order> orderList = this.buyerService.ConfirmOrders(buyer);  
 			
-			int bid = buyerRepo.findByName(uname);
-			
-			List<Order> orderList = orderRepo.findByBId(bid);  
-			
-			return orderList;
+		return orderList;
 		
 	}
 		
-		@PostMapping("/addOrder")
-		public String regFarmer(@RequestBody Order order) {
+	@PostMapping("/addOrder")
+	public String addOrders(@RequestBody Order order) {
 				
-			String buyeruname = order.getBuyer().getUser_name();
-			
-			System.out.println(buyeruname);
-			int bid = buyerRepo.findByName(buyeruname);
-				order.getBuyer().setBid(bid);
-				
-				String farmername = order.getFarmer().getFirstname();
-				System.out.println(farmername);
-				int fid = farmerRepo.findByFid(farmername);
-				order.getFarmer().setFid(fid);
-			    orderRepo.save(order);
-			     
-			    return "added";
-			    
-		}
+		String message = this.buyerService.addOrder(order);	
 		
-		@GetMapping("/profile/{username}")
-		public Optional<Buyer> getBuyer(@PathVariable String username) {
-
+		return message;
+	}
+		
+	
+	@GetMapping("/profile/{username}")
+	public Optional<Buyer> getBuyer(@PathVariable String username) {
 			
-			int bid = buyerRepo.findByName(username);
+		Optional<Buyer> buyer =this.buyerService.getBuyers(username);
 				          
-			return buyerRepo.findById(bid);
+		return buyer;
 			    
-		}
+	}
 		
 }
