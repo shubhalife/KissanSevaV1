@@ -47,6 +47,10 @@ public class FarmerServiceImpl implements FarmerService{
 	@Override
 	public String regFarmer(Farmer farmer) {
 		System.out.println(farmer.toString());
+	     String email = farmer.getEmail();
+	     
+	     EmailServiceImpl.sendMail(email);
+	     
 	     
 		farmerRepo.save(farmer);
 		     

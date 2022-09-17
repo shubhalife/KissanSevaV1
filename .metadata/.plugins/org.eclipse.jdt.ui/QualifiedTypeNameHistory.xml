@@ -44,4 +44,13 @@
     <fullyQualifiedTypeName name="com.farmsystem.backend.service.BuyerService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.farmsystem.backend.service.FarmerService"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="javax.mail.PasswordAuthentication"/>
+    <fullyQualifiedTypeName name="javax.mail.Session"/>
+    <fullyQualifiedTypeName name="javax.mail.Authenticator"/>
+    <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
+    <fullyQualifiedTypeName name="javax.mail.Message"/>
+    <fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
+    <fullyQualifiedTypeName name="javax.mail.Transport"/>
+    <fullyQualifiedTypeName name="javax.mail.internet.AddressException"/>
 </qualifiedTypeNameHistroy>

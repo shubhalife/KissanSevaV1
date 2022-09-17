@@ -62,6 +62,8 @@ public class BuyerServiceImpl implements BuyerService {
 	public String registerBuyer(Buyer buyer) {
 		 
 		buyerRepo.save(buyer);
+		String  email = buyer.getEmail();
+		EmailServiceImpl.sendMail(email);
 	     
 		return "register_success";
 	}
