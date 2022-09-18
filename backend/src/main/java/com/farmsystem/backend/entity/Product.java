@@ -9,8 +9,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name="products")
+@Getter
+@Setter
+@NoArgsConstructor 
+@AllArgsConstructor
 public class Product 
 {
 	@Id
@@ -30,71 +39,6 @@ public class Product
 	
 	@Column(name= "expected_Price")
 	private double expected_Price;
-
-	
-	public int getPid() {
-		return pid;
-	}
-
-
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-
-
-	public Farmer getFarmer() {
-		return farmer;
-	}
-
-
-	public void setFarmer(Farmer farmer) {
-		this.farmer = farmer;
-	}
-
-
-	public String getCrop() {
-		return crop;
-	}
-
-
-	public void setCrop(String crop) {
-		this.crop = crop;
-	}
-
-
-	public double getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(double quantity) {
-		this.quantity = quantity;
-	}
-
-
-	public double getExpected_Price() {
-		return expected_Price;
-	}
-
-
-	public void setExpected_Price(double expected_Price) {
-		this.expected_Price = expected_Price;
-	}
-
-
-	public Product(int pid, Farmer farmer, String crop, double quantity, double expected_Price) {
-		super();
-		this.pid = pid;
-		this.farmer = farmer;
-		this.crop = crop;
-		this.quantity = quantity;
-		this.expected_Price = expected_Price;
-	}
-
-
-	public Product() {
-		
-	}
 
 	
 }
