@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,16 +32,19 @@ public class Order
 	@JoinColumn(name="fid")
 	private Farmer farmer;
 	
-	
+	@NotEmpty
 	@Column(name= "crop_category")
 	private String crop_category;
 	
+	@NotEmpty
 	@Column(name ="quantity")
 	private double quantity;
 	
+	@NotEmpty
 	@Column(name="total_amount")
 	private double total_amount;
 	
+	@NotEmpty
 	@Column(name="status")
 	private String status;
 	

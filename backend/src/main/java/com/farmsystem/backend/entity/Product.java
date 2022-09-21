@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,12 +32,15 @@ public class Product
 	@JoinColumn(name="fid")
 	private Farmer farmer;
 	
+	@NotEmpty
 	@Column(name= "crop")
 	private String crop;
 	
+	@NotEmpty
 	@Column(name= "quantity")
 	private double quantity;
 	
+	@NotEmpty
 	@Column(name= "expected_Price")
 	private double expected_Price;
 

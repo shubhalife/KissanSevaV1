@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,18 +26,23 @@ public class BuyerCart
 	@Column(name="cartid")
 	private int cartid;
 	
+	@NotEmpty
 	@Column(name="buyerusername")
 	private String buyerusername;
 	
+	@NotEmpty
 	@Column(name="crop")
 	private String crop;
 	
+	@NotEmpty
 	@Column(name="quantity")
 	private double quantity;
 	
+	@NotEmpty
 	@Column(name="expectedprice")
 	private double expectedprice;
 	
+	@NotEmpty
 	@Column(name="farmername")
 	private String farmername;
 	

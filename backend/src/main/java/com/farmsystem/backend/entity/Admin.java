@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,18 +26,23 @@ public class Admin
 	@Column(name="aid")
 	private int aid;
 	
+	@NotEmpty
 	@Column(name="firstname")
 	private String firstname;
 	
+	@NotEmpty
 	@Column(name="lastname")
-   private String lastame;
+	private String lastame;
 	
+	@NotEmpty
 	@Column(name="email")
 	private String email;
 	
+	@NotEmpty
 	@Column(name="password")
 	private String password;
 	
+	@NotEmpty
 	@Column(name="user_name")
 	private String user_name;
 	
