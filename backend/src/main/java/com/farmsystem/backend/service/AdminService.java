@@ -5,6 +5,8 @@ import java.util.List;
 import com.farmsystem.backend.entity.Admin;
 import com.farmsystem.backend.entity.Buyer;
 import com.farmsystem.backend.entity.Farmer;
+import com.farmsystem.backend.entity.Order;
+import com.farmsystem.backend.entity.Product;
 
 public interface AdminService {
 	
@@ -14,8 +16,8 @@ public interface AdminService {
 	
 	List<Farmer>getAllFarmers();
 	
-	List<Farmer>getAllOrders();
+	List<Order>getAllOrders();
 	
-	List<Farmer>getAllProducts();
+	List<Product>getAllProducts();
 	
 }

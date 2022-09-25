@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.farmsystem.backend.entity.Admin;
 import com.farmsystem.backend.entity.Buyer;
 import com.farmsystem.backend.entity.Farmer;
+import com.farmsystem.backend.entity.Order;
+import com.farmsystem.backend.entity.Product;
 import com.farmsystem.backend.repository.AdminRepo;
 import com.farmsystem.backend.repository.BuyerCartRepo;
 import com.farmsystem.backend.repository.BuyerRepo;
@@ -40,7 +43,7 @@ public class AdminController
 	}
 	
 	
-	@PostMapping("/buyer-list")
+	@GetMapping("/buyer-list")
 	public List<Buyer> getBuyers() {
 	        
 		List<Buyer> buyerList = this.adminservice.getAllBuyers();
@@ -48,7 +51,7 @@ public class AdminController
 		return buyerList;
 	}
 	
-	@PostMapping("/farmer-list")
+	@GetMapping("/farmer-list")
 	public List<Farmer> getFarmers() {
 	        
 		
@@ -57,20 +60,22 @@ public class AdminController
 		return farmerList;
 	}
 	
-	@PostMapping("/Orders")
-	public List<Farmer> getOrders() {
+	@GetMapping("/Orders")
+	public List<Order> getOrders() {
 	        
 		
-		List<Farmer> farmerList = this.adminservice.getAllOrders();              
+		List<Order> orderList = this.adminservice.getAllOrders();              
 			
-		return farmerList;
+		return orderList;
 	}
 	
-	@PostMapping("/Product")
-	public List<Farmer> getProduct() {
+	@GetMapping("/Product")
+	public List<Product> getProduct() {
 	        
-		List<Farmer> farmerList = this.adminservice.getAllProducts();              
+		List<Product> productList = this.adminservice.getAllProducts();              
 			
-		return farmerList;
+		return productList;
 	}
+	
+	
 }

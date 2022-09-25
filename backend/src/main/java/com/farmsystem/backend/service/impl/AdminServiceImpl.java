@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.farmsystem.backend.entity.Admin;
 import com.farmsystem.backend.entity.Buyer;
 import com.farmsystem.backend.entity.Farmer;
+import com.farmsystem.backend.entity.Order;
+import com.farmsystem.backend.entity.Product;
 import com.farmsystem.backend.repository.AdminRepo;
 import com.farmsystem.backend.repository.BuyerRepo;
 import com.farmsystem.backend.repository.FarmerRepo;
@@ -71,18 +73,18 @@ public class AdminServiceImpl implements AdminService{
 	
 
 	@Override
-	public List<Farmer> getAllOrders() {
-		List<Farmer> farmerList = farmerRepo.findAll();              
+	public List<Order> getAllOrders() {
+		List<Order> farmerList = orderRepo.findAll();              
 		
 		return farmerList;
 	}
 
 	
 	@Override
-	public List<Farmer> getAllProducts() {
-		List<Farmer> farmerList = farmerRepo.findAll();              
+	public List<Product> getAllProducts() {
+		List<Product> productList = productRepo.findAll();              
 		
-		return farmerList;
+		return productList;
 	}
 
 }
